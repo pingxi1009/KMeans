@@ -12,7 +12,7 @@ typedef struct
 	double y;
 }M_POINT;
 
-M_POINT g_orin[5] = {{1, 0},{ 48, 1 },{ 71, 2 },{ 93, 3 },{ 104, 4 }};
+M_POINT g_orin[5] = {{1, 2},{ 40, 10 },{ 52, 2 },{ 93, 3 },{ 104, 4 }};
 int countTime = 0;
 
 double GetDistance(M_POINT p1, M_POINT p2)
@@ -77,49 +77,117 @@ void CalculateMainPoint(M_POINT *arr, int arrlen, M_POINT *g_orin, int pointCoun
 	cout << "grop3 size = " << grop3.size() << endl;
 	cout << "grop4 size = " << grop4.size() << endl;
 	cout << "grop5 size = " << grop5.size() << endl;
-
 	cout << "-----------------------------" << endl;
 
 	M_POINT p_sum[5] = { 0, };
-	for (vector<M_POINT>::iterator iter = grop1.begin(); iter != grop1.end(); iter++)
+
+	// 如果某个grop元素个数为0，则中断这个grop的中心点在分布
+	do 
+	{
+		if (0 == grop1.size())
+			break;	// 元素个数为0，则跳过这个grop
+		for (vector<M_POINT>::iterator iter = grop1.begin(); iter != grop1.end(); iter++)
+		{
+			p_sum[0].x += iter->x;
+			p_sum[0].y += iter->y;
+		}
+		g_orin[0].x = p_sum[0].x / grop1.size();
+		g_orin[0].y = p_sum[0].y / grop1.size();
+	} while (0);	// 只运行一次，碰到异常就跳过
+
+	do
+	{
+		if (0 == grop2.size())
+			break;
+		for (vector<M_POINT>::iterator iter = grop2.begin(); iter != grop2.end(); iter++)
+		{
+			p_sum[1].x += iter->x;
+			p_sum[1].y += iter->y;
+		}
+		g_orin[1].x = p_sum[1].x / grop2.size();
+		g_orin[1].y = p_sum[1].y / grop2.size();
+	} while (0);
+
+	do
+	{
+		if (0 == grop3.size())
+			break;
+		for (vector<M_POINT>::iterator iter = grop3.begin(); iter != grop3.end(); iter++)
+		{
+			p_sum[2].x += iter->x;
+			p_sum[2].y += iter->y;
+		}
+		g_orin[2].x = p_sum[2].x / grop3.size();
+		g_orin[2].y = p_sum[2].y / grop3.size();
+	} while (0);
+
+	do
+	{
+		if (0 == grop4.size())
+			break;
+		for (vector<M_POINT>::iterator iter = grop4.begin(); iter != grop4.end(); iter++)
+		{
+			p_sum[3].x += iter->x;
+			p_sum[3].y += iter->y;
+		}
+		g_orin[3].x = p_sum[3].x / grop4.size();
+		g_orin[3].y = p_sum[3].y / grop4.size();
+	} while (0);
+
+	do
+	{
+		if (0 == grop5.size())
+			break;
+		for (vector<M_POINT>::iterator iter = grop5.begin(); iter != grop5.end(); iter++)
+		{
+			p_sum[4].x += iter->x;
+			p_sum[4].y += iter->y;
+		}
+		g_orin[4].x = p_sum[4].x / grop5.size();
+		g_orin[4].y = p_sum[4].y / grop5.size();
+	} while (0);
+
+
+
+	/*for (vector<M_POINT>::iterator iter = grop1.begin(); iter != grop1.end(); iter++)
 	{
 		p_sum[0].x += iter->x;
 		p_sum[0].y += iter->y;
 	}
 	g_orin[0].x = p_sum[0].x / grop1.size();
-	g_orin[0].y = p_sum[0].y / grop1.size();
+	g_orin[0].y = p_sum[0].y / grop1.size();*/
 
-	for (vector<M_POINT>::iterator iter = grop2.begin(); iter != grop2.end(); iter++)
+	/*for (vector<M_POINT>::iterator iter = grop2.begin(); iter != grop2.end(); iter++)
 	{
 		p_sum[1].x += iter->x;
 		p_sum[1].y += iter->y;
 	}
 	g_orin[1].x = p_sum[1].x / grop2.size();
-	g_orin[1].y = p_sum[1].y / grop2.size();
+	g_orin[1].y = p_sum[1].y / grop2.size();*/
 
-	for (vector<M_POINT>::iterator iter = grop3.begin(); iter != grop3.end(); iter++)
+	/*for (vector<M_POINT>::iterator iter = grop3.begin(); iter != grop3.end(); iter++)
 	{
 		p_sum[2].x += iter->x;
 		p_sum[2].y += iter->y;
 	}
 	g_orin[2].x = p_sum[2].x / grop3.size();
-	g_orin[2].y = p_sum[2].y / grop3.size();
+	g_orin[2].y = p_sum[2].y / grop3.size();*/
 
-	for (vector<M_POINT>::iterator iter = grop4.begin(); iter != grop4.end(); iter++)
+	/*for (vector<M_POINT>::iterator iter = grop4.begin(); iter != grop4.end(); iter++)
 	{
 		p_sum[3].x += iter->x;
 		p_sum[3].y += iter->y;
 	}
 	g_orin[3].x = p_sum[3].x / grop4.size();
-	g_orin[3].y = p_sum[3].y / grop4.size();
+	g_orin[3].y = p_sum[3].y / grop4.size();*/
 
-	for (vector<M_POINT>::iterator iter = grop5.begin(); iter != grop5.end(); iter++)
+	/*for (vector<M_POINT>::iterator iter = grop5.begin(); iter != grop5.end(); iter++)
 	{
 		p_sum[4].x += iter->x;
 		p_sum[4].y += iter->y;
 	}
 	g_orin[4].x = p_sum[4].x / grop5.size();
-	g_orin[4].y = p_sum[4].y / grop5.size();
+	g_orin[4].y = p_sum[4].y / grop5.size();*/
 }
 
 
